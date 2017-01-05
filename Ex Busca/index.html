@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html ng-app="appBusca">
+<head>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" x-undefined="" />
+	<title> Ex. Busca </title>
+
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+	<script type="text/javascript" src="../angular-1.5.8/angular.min.js"></script>
+	
+	<script type="text/javascript">
+		angular.module('appBusca', []);
+		angular.module('appBusca').controller('buscaCtrl', function($scope){
+			$scope.teste = "Scope teste buscaCtrl";
+
+
+			$scope.clientes = [	
+				{
+			        nome: "SSA Comunicações",
+			        telefone: "(47)8899-6788",
+			        cidade: "Rio do Sul"
+			    }, 
+			    {
+			        nome: "Argoville",
+			        telefone: "(47)3465-5435",
+			        cidade: "Joinville"
+			    }, 
+			    {
+			        nome: "Brahma",
+			        telefone: "(51)4367-9877",
+			        cidade: "Joinville"
+			    }, 
+			    {
+			        nome: "Antartica",
+			        telefone: "(67)8977-6655",
+			        cidade: "Blumenau"
+			    }, 
+			    {
+			        nome: "Stackoverflow",
+			        telefone: "(77)8644-3334",
+			        cidade: "Jaraguá do Sul"
+		    	}
+	    	];
+
+		});
+
+	</script>
+	
+</head>
+<body ng-controller="buscaCtrl">
+
+	<!-- div> {{ teste }} </div -->
+
+	<br><br>
+
+	<div class="container">
+		<div class="form-group">
+		    <div class="input-group">
+		        <label>Nome:</label>
+		        <input type="text" class="form-control" ng-model="search">
+		        <a href="#" class="btn btn-sucess btn-sm" ng-click="consultar();">Buscar</a>
+		    </div>
+		</div>
+	</div>
+
+	<table class="table table-bordered table-striped">
+		<th>Nome</th>
+		<th>Telefone</th>
+		<th>Cidade</th>
+
+		<tbody>
+	      <tr ng-repeat="item in clientes | filter:search">
+	        <td>{{ item.nome }}</td>
+	        <td>{{ item.telefone }}</td>
+	        <td>{{ item.cidade }}</td>
+	      </tr>
+	    </tbody>
+	</table>
+
+</body>
+</html>

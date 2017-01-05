@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" x-undefined="" />
+	<title> Ex. Directive </title>
+
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+	<script type="text/javascript" src="../angular-1.5.8/angular.min.js"></script>
+	
+	<script type="text/javascript">
+		var app = angular.module('myApp', []);
+
+		app.controller('directiveCtrl', function($scope){
+			$scope.teste = "Scope teste directiveCtrl";
+		});
+
+		app.directive('myDirective', function(){
+
+			return{
+				template : "This is the directive ! Mais variavel (teste) = {{ teste }}" 
+			};
+
+		});
+
+	</script>
+	
+</head>
+<body ng-controller="directiveCtrl">
+
+	<div> {{ teste }} </div>
+
+	<div my-directive></div>
+
+</body>
+</html>

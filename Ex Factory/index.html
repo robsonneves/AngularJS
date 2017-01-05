@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html ng-app="myFactory">
+<head>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" x-undefined="" />
+	<title> Ex. Factory end Service </title>
+
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+	<script type="text/javascript" src="../angular-1.5.8/angular.min.js"></script>
+	
+	<script type="text/javascript">
+
+		var app = angular.module('myFactory', []);
+
+		app.controller('factoryCtrl', function($scope, myService, testFactory){
+			
+			$scope.teste = "Scope teste factoryCtrl";
+
+			$scope.testeService = myService.myFunc(255);
+
+			$scope.testeFactory = testFactory.sayHello('Marco');
+
+			$scope.testeFactory2 = testFactory.sayGoodbye('Marco');
+
+		});
+
+		//Service
+		app.service('myService', function(){
+
+			this.myFunc = function(x){
+				return x.toString(16);
+			};
+			
+		});
+
+		//factory
+		app.factory('testFactory', function(){
+		    
+		    return {
+		        sayHello: function(text){
+		            return "Factory says \"Hello " + text + "\"";
+		        },
+		        sayGoodbye: function(text){
+		            return "Factory says \"Goodbye " + text + "\"";
+		        }  
+		    }
+
+		});
+
+	</script>
+	
+</head>
+<body ng-controller="factoryCtrl">
+
+	<div> {{ teste }} </div>
+
+	<br><br>
+
+	<div> {{ testeService }} </div>
+
+	<br><br>
+
+	<div> {{ testeFactory }} </div>
+
+	<br><br>
+
+	<div> {{ testeFactory2 }} </div>
+
+</body>
+</html>

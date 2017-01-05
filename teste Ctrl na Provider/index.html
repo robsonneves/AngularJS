@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" x-undefined="" />
+	<title> Ex. Declaração Value e Constantes </title>
+
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+	<script type="text/javascript" src="../angular-1.5.8/angular.min.js"></script>
+	
+	<script type="text/javascript">
+		angular.module('myApp', [])
+		.controller('myCtrl', function($scope, myProvider){
+
+			$scope.teste = "Txt teste !!!";
+
+			$scope.testeBtn = function(){
+				$scope.testeDois = myProvider.provider();
+			}
+
+		})
+
+		.provider('myProvider', function(){
+
+			this.$get = function(){
+
+				return{
+
+					provider: function(){
+						var provider = 'provider';
+						return provider;
+					}
+
+				};
+
+			}
+
+
+		});
+
+
+	</script>
+	
+</head>
+<body ng-controller="myCtrl">
+
+	<div> {{ teste }} </div>
+
+	<button ng-click="testeBtn();"> teste </button>
+
+	{{ testeDois }}
+
+</body>
+</html>

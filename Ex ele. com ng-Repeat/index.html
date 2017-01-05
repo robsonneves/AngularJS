@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" x-undefined="" />
+	<title> Ex. Elemento com ng-repeat </title>
+
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+	<script type="text/javascript" src="../angular-1.5.8/angular.min.js"></script>
+	
+	<script type="text/javascript">
+		var app = angular.module('myApp', [])
+
+		.controller('myController', function($scope){
+
+			$scope.teste = 'Aqui o teste';
+
+		    $scope.grades = [{}];
+		  	$scope.addGrade = function() {
+		    	$scope.grades.push({});
+	    	};
+
+
+
+		});
+		
+		
+
+	</script>
+	
+</head>
+<body ng-controller="myController">
+
+	<div> {{ teste }} </div>
+
+
+	<div>
+	  <button ng-click='addGrade()'>Add</button>
+	  <div style="border-style: solid; width: 200px" ng-repeat='grade in grades'>
+	    <select ng-model='grade.list'>
+	      <option value="grade1">Grade 1</option>
+	      <option value="grade2">Grade 2</option>
+	      <option value="grade3">Grade 3</option>
+	      <option value="grade4">Grade 4</option>
+	    </select>
+	    <input type="text" ng-model='grade.text' />
+	  </div>
+	{{grades}}
+	</div>
+
+
+
+</body>
+</html>

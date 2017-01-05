@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html ng-app="myAuto">
+<head>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" x-undefined="" />
+	<title> Ex. Service </title>
+	<link rel="stylesheet" type="text/css" href="js/massautocomplete.theme.css">
+	
+	<!-- Angular 1.3.15 -->
+	<!-- script src="angular/angular.js"></script>
+    <script src="angular/sanitize.js"></script -->
+
+	<script type="text/javascript" src="../angular-1.5.8/angular.min.js"></script>
+	<script type="text/javascript" src="../angular-1.5.8/angular-sanitize.min.js"></script>
+
+	<script type="text/javascript" src="js/massautocomplete.js"></script>
+
+	
+	<script type="text/javascript">
+		
+		angular.module('myAuto', ['ngSanitize', 'MassAutoComplete'])
+
+		.controller('autoCtrl', function($scope, $sce, $q){
+		
+			$scope.teste = "Scope teste autoCtrl";
+
+			//$scope.n_array = [{}];
+			
+			$scope.friends = [{
+		        name: 'Andrew'
+		    },
+		    {
+		        name: 'Bob'
+		    },{
+		        name: 'Beano'
+		    },{
+		        name: 'Chris'
+		    }, {
+		        name: 'Will'
+		    }, {
+		        name: 'Mark'
+		    }, {
+		        name: 'Alice'
+		    }, {
+		        name: 'Todd'
+		    }];
+
+			function highlight(str, term) {
+			  var highlight_regex = new RegExp('(' + term + ')', 'gi');
+			  return str.replace(highlight_regex,
+			    '<span class="highlight">$1</span>');
+			};
+
+			function suggest_state_with_highlight(term) {
+			  if (term.length < 2)
+			    return;
+
+			  var suggestions = suggest_state(term);
+			  suggestions.forEach(function (s) {
+			    // In real life you should reuse the regexp object.
+			    s.label = $sce.trustAsHtml(highlight(s.label, term));
+			  });
+
+			  return suggestions;
+			};
+
+			$scope.ac_option_highlight = {
+			  suggest: suggest_state_with_highlight
+			};
+
+			
+
+		});
+
+		/*.controller('PersonCtrl', function () {
+		    this.setLetters = function(from, to){
+		      this.fromLetter = from;
+		      this.toLetter = to;
+		    };
+		    this.friends = [{
+		        name: 'Andrew'
+		    },
+		    {
+		        name: 'Bob'
+		    },{
+		        name: 'Beano'
+		    },{
+		        name: 'Chris'
+		    }, {
+		        name: 'Will'
+		    }, {
+		        name: 'Mark'
+		    }, {
+		        name: 'Alice'
+		    }, {
+		        name: 'Todd'
+		    }];
+		})
+
+	  	.filter('startsWithLetter', function () {
+		      return function (items, fromLetter, toLetter) {
+		          var filtered = [];
+		          for (var i = 0; i < items.length; i++) {
+		              var item = items[i];
+		              var firstLetter = item.name.substring(0, 1).toLowerCase();
+		              if ((!fromLetter || firstLetter >= fromLetter)
+		                  && (!toLetter || firstLetter <= toLetter)) {
+		                  filtered.push(item);
+		              }
+		          }
+		          return filtered;
+		      };
+	  	});*/
+		
+	</script>
+	
+</head>
+<body ng-controller="autoCtrl">
+
+	<div> {{ teste }} </div>
+
+	<input type="number" ng-model="n" placeholder="How many inputs?" class="form-control ng-valid ng-valid-number ng-dirty" />
+
+    <div ng-repeat="i in friends track by $index"/>
+	  	
+	  	<input type="text" placeholder="Select State" ng-model="dirty.friends[$index]" calc-autocomplete-item="ac_option_highlight" />
+	
+	</div>
+
+
+    <br><br>
+
+
+    <br><br>
+
+ 	<!--<div class="container" ng-controller="PersonCtrl as person">
+	    <button type="button" class="btn btn-primary" ng-click="person.setLetters()">All</button>
+	    <button type="button" class="btn btn-primary" ng-click="person.setLetters('a','e')">A-E</button>
+	    <button type="button" class="btn btn-primary" ng-click="person.setLetters('f','k')">F-K</button>
+	    <button type="button" class="btn btn-primary"ng-click="person.setLetters('l','p')">L-P</button>
+	    <ul>
+	      <li ng-repeat="friend in person.friends | startsWithLetter:person.fromLetter:person.toLetter">
+	        {{ friend }}
+	      </li>
+	    </ul>
+  	</div>-->
+
+</body>
+</html>

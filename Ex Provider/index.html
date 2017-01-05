@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" x-undefined="" />
+	<title> Provider - Inica que consigo passar para um Config. </title>
+
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+	<script type="text/javascript" src="../angular-1.5.8/angular.min.js"></script>
+
+	<script>
+
+		angular.module('myApp', [])
+
+		.controller('appCtrl', function($scope, myProvider){
+
+			$scope.teste 		 	= 'Teste controller Ctrl';
+
+			$scope.testeProvider 	= myProvider.getNome();
+
+		})
+		
+		.provider('myProvider', function(){
+		
+			this.$get = function() { 
+				var vm = this;
+				return {
+					getNome: function(){
+						return vm.nome;
+					}
+				}
+			}
+
+		});
+
+	</script>
+		
+</head>
+
+<body ng-controller="appCtrl">
+
+	{{ teste }}
+
+	{{ testeProvider }}
+
+</body>
+</html>

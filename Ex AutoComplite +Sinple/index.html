@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html ng-app="myAuto">
+<head>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" x-undefined="" />
+	<title> Ex. Service </title>
+
+	<script type="text/javascript" src="../angular-1.5.8/angular.min.js"></script>
+	<script type="text/javascript" src="../angular-1.5.8/angular-sanitize.min.js"></script>
+
+	<script type="text/javascript" src="js/massautocomplete.min.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="js/massautocomplete.theme.css">
+	
+	<script type="text/javascript">
+		
+		angular.module('myAuto', ['ngSanitize', 'MassAutoComplete'])
+
+		.controller('autoCtrl', function($scope, $sce, $q){
+		
+			$scope.teste = "Scope teste autoCtrl";
+
+			$scope.dirty = {};
+
+		  	var states = ['Alabama', 'Alaska', 'California', /* ... */ ];
+
+		  	function suggest_state(term) {
+			    var q = term.toLowerCase().trim();
+			    var results = [];
+
+			    // Find first 10 states that start with `term`.
+			    for (var i = 0; i < states.length && results.length < 10; i++) {
+			      var state = states[i];
+			      if (state.toLowerCase().indexOf(q) === 0)
+			        results.push({ label: state, value: state });
+			    }
+
+			    return results;
+		  	};
+
+		  	$scope.autocomplete_options = {
+			    suggest: suggest_state
+		  	};
+
+		});
+		
+	</script>
+	
+</head>
+<body ng-controller="autoCtrl">
+
+	<div> {{ teste }} </div>
+
+	<div>
+      	<div mass-autocomplete>
+        	<input ng-model="dirty.value" mass-autocomplete-item="autocomplete_options">
+      	</div>
+    </div>
+
+</body>
+</html>

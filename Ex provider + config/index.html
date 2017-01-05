@@ -1,0 +1,58 @@
+k<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" x-undefined="" />
+	<title> Provider - Inica que consigo passar para um Config. </title>
+
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+	<script type="text/javascript" src="../angular-1.5.8/angular.min.js"></script>
+
+	<script>
+
+		angular.module('myApp', [])
+
+		.provider("game", function(){
+
+			var type;
+
+			return{
+				setType: function(value){
+					type = value;
+				},
+				$get: function(){
+					return{
+						title: type + "provider Craft"
+					};
+				}
+			};
+
+		})
+
+		.config(function(gameProvider){
+			gameProvider.setType('WAR - teste config -');
+		})
+
+		.controller('appCtrl', function($scope, game){
+
+			$scope.teste 		 	= 'Teste controller Ctrl';
+
+			$scope.testeProvider 	= game.title;
+
+		});
+
+
+	</script>
+		
+</head>
+
+<body ng-controller="appCtrl">
+
+	{{ teste }}
+	
+	<br>
+
+	{{ testeProvider }}
+
+</body>
+</html>

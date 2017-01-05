@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" x-undefined="" />
+	<title> Ex. Accordion </title>
+
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+	<script type="text/javascript" src="../angular-1.5.8/angular.min.js"></script>
+	
+	<script type="text/javascript">
+
+		angular.module('myApp', [])
+
+		.controller('principalCtrl', function($scope){
+			
+			$scope.teste = 'Aqui var controller principalCtrl';
+
+			$scope.teste2 = 'teste dois';
+
+		})
+
+		.controller('controllerSecundaria', function($scope){
+
+			$scope.teste = 'Aqui var controller controllerSecundaria';
+
+			$scope.$parent.teste2 = ' teste filho';
+
+		});
+
+	</script>
+	
+</head>
+<body ng-controller="principalCtrl">
+
+	<div> {{ teste }} </div>
+
+	<div ng-controller="controllerSecundaria"> {{ teste }} <br>  {{ $parent.teste }}  {{ $parent.teste2 }}</div>
+
+</body>
+</html>

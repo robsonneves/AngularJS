@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" x-undefined="" />
+	<title> Ex. Accordion </title>
+
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+	<script type="text/javascript" src="../angular-1.5.8/angular.min.js"></script>
+	
+	<script type="text/javascript">
+
+		angular.module('myApp', [])
+
+		.controller('principalCtrl', function($scope){
+			
+			$scope.testeBtn = function(){
+
+				//alert(this.teste = {};);
+				var vm = this;
+				vm.teste = { teste: 'aqui é button'};
+
+			};
+
+
+		});
+
+	</script>
+	
+</head>
+<body ng-controller="principalCtrl">
+
+	<div> {{ teste }} </div>
+
+
+	<input type="text" ng-model="teste" /> {{ teste }}
+	<button ng-click="testeBtn();"> ok </button>
+
+</body>
+</html>

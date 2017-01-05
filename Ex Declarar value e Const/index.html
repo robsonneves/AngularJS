@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html ng-app="myDeclaracao">
+<head>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" x-undefined="" />
+	<title> Ex. Declaração Value e Constantes </title>
+
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+	<script type="text/javascript" src="../angular-1.5.8/angular.min.js"></script>
+	
+	<script type="text/javascript">
+
+		angular.module('myDeclaracao', [])
+
+		//declaração .
+		.value('appInfoValue', {version: "2.0"} )
+		.constant('appInfoConstant', {version: "2.0"} )
+
+		.controller('myDeclaracaoCtrl', function($scope, appInfoValue, appInfoConstant){
+			
+			$scope.teste = "Scope teste myDeclaracao";
+
+			$scope.value = appInfoValue.version;
+  			$scope.const = appInfoValue.version;
+
+		});
+
+
+	</script>
+	
+</head>
+<body ng-controller="myDeclaracaoCtrl">
+
+	<div> {{ teste }} </div>
+
+	<hr>
+	<p>{{value}}</p>
+    <hr>
+    <p>{{const}}</p>    
+
+</body>
+</html>

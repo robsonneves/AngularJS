@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html ng-app="validacaoForm">
+<head>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" x-undefined="" />
+	<title> Ex. Declaração Value e Constantes </title>
+
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+	<script type="text/javascript" src="../angular-1.5.8/angular.min.js"></script>
+	
+	<script type="text/javascript">
+		angular.module('validacaoForm', [])
+		.controller('validacaoFormCtrl', function($scope){
+
+			$scope.teste = "Txt teste !!!";
+
+		});
+
+
+	</script>
+	
+</head>
+<body ng-controller="validacaoFormCtrl">
+
+	<div> {{ teste }} </div>
+
+	<form name="formTesteValidate">
+		<input type="text" name="inputUm" ng-model="inputUm" required />
+	</form>
+
+	<h2>{{ formTesteValidate.inputUm.$valid }}</h2>
+
+</body>
+</html>

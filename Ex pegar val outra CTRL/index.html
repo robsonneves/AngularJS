@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" x-undefined="" />
+	<title> Ex. Accordion </title>
+
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+	<script type="text/javascript" src="../angular-1.5.8/angular.min.js"></script>
+	
+	<script type="text/javascript">
+
+		angular.module('myApp', [])
+
+		.controller('principalCtrl', function($scope){
+			
+			$scope.teste = "Scope teste principalCtrl";
+
+		});
+
+	</script>
+	
+	<!-- Factory -->
+	<script type="text/javascript" src="factory/appFactory.js"></script>
+	
+	<!-- Controller --> 
+	<script type="text/javascript" src="controllers/ctrlUm.js"></script>
+	<script type="text/javascript" src="controllers/ctrlDois.js"></script>
+	
+</head>
+<body ng-controller="principalCtrl">
+
+	<div> {{ teste }} </div>
+
+	<br>
+
+	<div ng-controller="ctrlUm"> {{ teste  }}  <button ng-click="clickTeste();"> teste </button> </div>
+
+	<br>
+	
+	<div ng-controller="ctrlDois"> {{ teste  }} <button ng-click="clickTeste();"> teste 2 </button> </div>
+
+</body>
+</html>

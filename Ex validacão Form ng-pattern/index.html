@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html ng-app="validacaoForm">
+<head>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" x-undefined="" />
+	<title> Ex. Declaração Value e Constantes </title>
+
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+	<script type="text/javascript" src="../angular-1.5.8/angular.min.js"></script>
+	
+	<script type="text/javascript">
+
+		angular.module('validacaoForm', [])
+		.controller('validacaoFormCtrl', function($scope){
+
+			$scope.teste = "Txt teste !!!";
+
+			$scope.testVariable = "hello world!";
+
+		    $scope.userRegex = '[a-zA-Z]{8,}';
+
+		    $scope.passRegex = '[a-zA-Z]{5,}';
+
+		    $scope.register = function(user) {
+		      console.log(user);
+		    };
+
+		});
+
+	</script>
+	
+</head>
+<body ng-controller="validacaoFormCtrl">
+
+	<div> {{ teste }} </div>
+
+	<form name="testeForm">
+		
+		<div class="container">
+        	<form name="testform" novalidate>
+
+	          	<div class="form-group">
+	            	<label>Username</label>
+	            	<input type="username" class="form-control" name="username" placeholder="Email" ng-pattern="userRegex" ng-model="user.name">
+	            	<br/>
+	            	<p class="bg-warning" ng-show="testform.username.$invalid">Username needs to be at least 8 characters long</p>
+	          	</div>
+
+	          	<div class="form-group">
+	            	<label>Password</label>
+	            	<input type="password" class="form-control" name="password" ng-pattern="passRegex" placeholder="Password" ng-model="user.pass">
+	            	<p class="bg-warning" ng-show="testform.password.$invalid">Password needs to be at least 5 characters long</p>
+	          	</div>
+
+	          	<button ng-disabled="testform.$invalid" type="submit" ng-click="register(user)" class="btn btn-default">Register</button>
+	        	
+        	</form>
+      	</div>
+		
+	</form>
+
+
+</body>
+</html>

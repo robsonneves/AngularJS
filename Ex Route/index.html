@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html ng-app="appRoute">
+<head>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" x-undefined="" />
+	<title> Ex. Route </title>
+
+	<script type="text/javascript" src="../angular-1.5.8/angular.min.js"></script>
+	<script type="text/javascript" src="../angular-1.5.8/angular-route.min.js"></script>
+
+	<script type="text/javascript">
+		angular.module('appRoute', ['ngRoute']);
+		angular.module('appRoute').controller('routeCtrl', function($scope){
+			$scope.teste = "Scope teste routeCtrl";
+		});
+	</script>
+	<script type="text/javascript" src="configRoute.js"></script>
+
+	<script type="text/javascript" src="controller/homeCtrl.js"></script>
+	<script type="text/javascript" src="controller/contatoCtrl.js"></script>
+	<script type="text/javascript" src="controller/testeCtrl.js"></script>
+
+
+</head>
+<body>
+
+	<a href="#/home"> Home </a> - <a href="#/contato"> Contato </a> - <a href="#/teste/Parametro"> Teste </a>
+
+	<div ng-view></div>
+
+</body>
+</html>

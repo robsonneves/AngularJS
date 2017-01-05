@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html ng-app="appPaginacao">
+<head>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" x-undefined="" />
+	<title> Ex. Paginação </title>
+
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+	<script type="text/javascript" src="../angular-1.5.8/angular.min.js"></script>
+	<script type="text/javascript" src="js/dirPagination.js"></script>
+	
+	<script type="text/javascript">
+		angular.module('appPaginacao', ['angularUtils.directives.dirPagination']);
+		angular.module('appPaginacao').controller('paginacaoCtrl', function($scope){
+			$scope.teste = "Scope teste paginacaoCtrl";
+		});
+
+		angular.module("appPaginacao").controller("basicExampleCtrl", function($scope) {
+		    
+		    $scope.list = $scope.$parent.personList
+
+		    $scope.contatos = [ 
+		    					{'id':'1' , 'nome': 'Maria'},
+		    					{'id':'2' , 'nome': 'Maria'},
+		    					{'id':'3' , 'nome': 'Maria'},
+								{'id':'4' , 'nome': 'Maria'},
+		    					{'id':'5' , 'nome': 'Maria'},
+		    					{'id':'6' , 'nome': 'Maria'},
+		    					{'id':'7' , 'nome': 'Maria'},
+		    					{'id':'8' , 'nome': 'Maria'},
+		    					{'id':'9' , 'nome': 'Maria'},
+		    					{'id':'10', 'nome': 'Maria'},
+		    					{'id':'11', 'nome': 'Maria'},
+		    					{'id':'12', 'nome': 'Maria'},
+		    				  ];
+
+		});
+
+	</script>
+	
+</head>
+<body ng-controller="paginacaoCtrl">
+
+	<div> {{ teste }} </div>
+
+	<br><br>
+
+	<div ng-controller="basicExampleCtrl">
+
+		<table class="table table-striped">
+			<thead> um </thead>
+				<tbody>
+			    <tr dir-paginate="contato in contatos | itemsPerPage:4">
+			        <td>{{contato.id}}</td>
+			        <td>{{contato.nome}}</td>
+			    </tr>
+
+			</tbody>
+		</table>
+
+		<dir-pagination-controls max-size="5" boundary-links="true"></dir-pagination-controls>
+
+	<div>
+
+</body>
+</html>
